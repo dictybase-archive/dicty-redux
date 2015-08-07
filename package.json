@@ -1,7 +1,7 @@
 {
   "name": "dicty-redux",
   "version": "0.0.1",
-  "description": "starter kit for redux based react application",,
+  "description": "starter kit for redux based react application",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
