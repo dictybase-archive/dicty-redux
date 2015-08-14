@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {Router, Route} from 'react-router';
+import {Router} from 'react-router';
 import * as store from 'stores';
 import {DevTools, LogMonitor, DebugPanel} from 'redux-devtools/lib/react';
 import routes from '../routes';
