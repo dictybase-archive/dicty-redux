@@ -5,15 +5,12 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "webpack && npm run compile:cleanup",
+    "compile": "webpack",
     "compile:cleanup": "rm dist/client/index.html",
     "dev": "node --harmony ./config/webpack-dev-server",
-    "dev:debug": "npm run dev -- --debug",
-    "dev:quiet": "npm run dev -- --quiet",
     "test": "npm run test:unit",
     "test:unit": "./node_modules/karma/bin/karma start",
-    "deploy": "npm run test && npm run compile",
-    "server:start": "node --harmony ./server/scripts/start"
+    "deploy": "npm run test && npm run compile"
   },
   "author": "David Zukowski <david@zuko.me> (http://zuko.me)",
   "license": "MIT",
