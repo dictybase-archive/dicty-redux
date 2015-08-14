@@ -34,12 +34,6 @@ __configurations__ to customize accordingly.
 Runs the webpack build system just like in `compile` but enables HMR and react
 hot-loader. The webpack dev server can be found at `localhost:3000`.
 
-#### `npm run dev:debug`
-Same as `npm run dev` but enables `--debug` flag automatically.
-
-#### `npm run dev:quiet`
-Same as `npm run dev` but disables verbose debugging information.
-
 #### `npm run compile`
 Runs the Webpack build system with your current NODE_ENV and compiles the
 application to disk (`~/dist`).
