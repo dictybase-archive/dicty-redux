@@ -1,45 +1,29 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+import fs from 'fs'
+import _debug from 'debug'
+import config from './_base'
 
-const resolve = require('path').resolve,
-      yargs   = require('yargs').argv,
-      _slice  = [].slice;
+const debug = _debug('app:config')
+debug('Create configuration.')
+debug(`Apply environment overrides for NODE_ENV "${config.env}".`)
 
-const SRC_DIRNAME  = 'src',
-      DIST_DIRNAME = 'dist',
-      PROJECT_PATH = resolve(__dirname, '../');
+// Check if the file exists before attempting to require it, this
+// way we can provide better error reporting that overrides
+// weren't applied simply because the file didn't exist.
+const overridesFilename = `_${config.env}`
+let hasOverridesFile
+try {
+  fs.lstatSync(`${__dirname}/${overridesFilename}.js`)
+  hasOverridesFile = true
+} catch (e) {}
 
-function inProject () {
-  return resolve.apply(resolve, [PROJECT_PATH].concat(_slice.apply(arguments)));
+// Overrides file exists, so we can attempt to require it.
+// We intentionally don't wrap this in a try/catch as we want
+// the Node process to exit if an error occurs.
+let overrides
+if (hasOverridesFile) {
+  overrides = require(`./${overridesFilename}`)(config)
+} else {
+  debug(`No configuration overrides found for NODE_ENV "${config.env}"`)
 }
 
-module.exports = exports = {
-
-  // environment
-  NODE_ENV  : process.env.NODE_ENV,
-  __DEBUG__ : !!yargs.debug,
-  __DEV__   : process.env.NODE_ENV === 'development',
-  __PROD__  : process.env.NODE_ENV === 'production',
-
-  // path helpers
-  SRC_DIRNAME  : SRC_DIRNAME,
-  DIST_DIRNAME : DIST_DIRNAME,
-  PROJECT_PATH : PROJECT_PATH,
-  inProject : inProject,
-  inSrc     : inProject.bind(undefined, SRC_DIRNAME),
-  inDist    : inProject.bind(undefined, DIST_DIRNAME),
-
-  // build system
-  // these will be bundled separately from the core app
-  VENDOR_DEPENDENCIES : [
-    'immutable',
-    'react',
-    'react-redux',
-    'react-router',
-    'redux'
-  ],
-
-  // server configuration
-  WEBPACK_PORT : 3000,
-  WEBPACK_HOST: '0.0.0.0',
-  SERVER_PORT  : process.env.PORT || 4000
-};
+export default Object.assign({}, config, overrides)
