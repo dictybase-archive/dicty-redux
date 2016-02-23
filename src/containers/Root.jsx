@@ -1,38 +1,6 @@
-import React, {Component} from 'react';
-import {Provider} from 'react-redux';
-import {Router} from 'react-router';
-import * as store from 'stores';
-import {DevTools, LogMonitor, DebugPanel} from 'redux-devtools/lib/react';
-import routes from '../routes';
-
-/* eslint-disable */
-function renderDevTools() {
-    if (__DEBUG__) {
-        return (
-            <DebugPanel top left
-                bottom key="debugPanel">
-              <DevTools store={store} monitor={LogMonitor} />
-            </DebugPanel>
-      );
-    }
+// Similar concept as store, load the module based on dev or prod
+if (__DEBUG__) {
+      module.exports = require('./Root.prod')
+} else {
+      module.exports = require('./Root.dev')
 }
-/* eslint-enable */
-
-export default class Root extends Component {
-    displayName = 'Root component'
-    render() {
-        const {history} = this.props;
-        return (
-            <div>
-                <Provider store={store}>
-                    {() =>
-                        <Router history={history}>
-                            {routes}
-                        </Router>}
-                </Provider>
-                {renderDevTools()}
-            </div>
-        );
-    }
-}
-
