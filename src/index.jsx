@@ -1,21 +1,12 @@
-import 'babel-core/polyfill';
-import React from 'react';
-import Root from './containers/Root';
-import HashHistory from 'react-router/lib/HashHistory';
-import BrowerHistory from 'react-router/lib/BrowserHistory';
+import React from 'react'
+import { render } from 'react-dom'
+import Root from 'containers/Root'
+import configureStore from 'store/configureStore'
 
+const store = configureStore()
 
-let history;
-/* eslint-disable */
-if (__DEV__) {
-/* eslint-enable */
-    history = new HashHistory();
-} else {
-    history = new BrowerHistory();
-}
-
-React.render(
-    <Root history={history}/>,
-        document.getElementById('container')
-);
-
+// Render the React application to the DOM
+render(
+  <Root store={ store } />,
+  document.getElementById('root')
+)
