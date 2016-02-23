@@ -1,6 +1,6 @@
 # Dictybase react redux starter kit 
 
-[![dependencies](https://david-dm.org/dictybase/dicty-redux.svg)](https://david-dm.org/dictybase/dicty-redux-kit)
+[![dependencies](https://david-dm.org/dictybase/dicty-redux.svg)](https://david-dm.org/dictybase/dicty-redux)
 [![devDependency Status](https://david-dm.org/dictybase/dicty-redux/dev-status.svg)](https://david-dm.org/dictybase/dicty-redux#info=devDependencies)
 
 Starter kit to bootstrap  [React](https://facebook.github.io/react/) and
