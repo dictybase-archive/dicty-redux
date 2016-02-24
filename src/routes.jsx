@@ -1,4 +1,4 @@
-import {Route} from 'react-router';
+import {Route} from 'react-router'
 
 const routes = (
     /*
@@ -12,4 +12,4 @@ const routes = (
      */
 );
 
-export default routes;
+export default routes
