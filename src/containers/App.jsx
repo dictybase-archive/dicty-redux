@@ -53,6 +53,7 @@ export class App extends Component {
             return React.cloneElement(child, {...this.props})
         })
     };
+    render() {
         /*
          *It is recommended to select the dump components that are needed for the UI
          *The selection could be done by inspecting various prop parameters that comes
