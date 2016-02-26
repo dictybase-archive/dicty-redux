@@ -6,7 +6,7 @@ import * as actions from 'actions'
 
 
 // Which part of the Redux global state does our component want to receive as props
-const mapStateToProps = (state, ownProps)  => {
+const mapStateToProps = (state, ownProps) => {
      /*
       *if the name of reducer is user then
       *const { user } = state
@@ -25,7 +25,8 @@ const mapStateToProps = (state, ownProps)  => {
 }
 
 // Which action creators does it want to receive by props
-// Look here https://github.com/gaearon/react-redux#connectmapstatetoprops-mapdispatchtoprops-mergeprops
+// Look here
+// https://github.com/gaearon/react-redux#connectmapstatetoprops-mapdispatchtoprops-mergeprops
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators(actions, dispatch)
@@ -36,15 +37,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 /*
- *Remember any other container component can implement both the mapper methods(or one of them) given above
+ *Remember any other container component can implement both
+ the mapper methods(or one of them) given above
  *get connected to redux store
  */
 
-export class App extends Component {
+class App extends Component {
     displayName = 'the primary app component';
-    static propTypes = {
-        auth: PropTypes.object.isRequired
-    };
     /*
      *Makes sure all the props passed to all the childrens to receive the state and actions
      */
@@ -69,4 +68,4 @@ export class App extends Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)
